@@ -10,7 +10,7 @@ Returns:
 """
 
 #intiate our starting counts
-currentWord, ups, downs = sys.stdin.readline().strip().split("\t")
+currentWord, ups, downs = sys.stdin.readline().split("\t")
 upSum=int(ups)
 downSum=int(downs)
 

@@ -31,5 +31,9 @@ for line in sys.stdin:
 #sort dict
 words_count = dict(sorted(out.items(), key=lambda item: item[1], reverse=True))
 
+top=1000
 for word, votes in words_count.items():
+    if(not top):
+        break
     print("{}\t{}\t{}".format(word,votes[0],votes[1]))
+    top-=1

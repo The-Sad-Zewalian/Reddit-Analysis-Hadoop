@@ -9,30 +9,29 @@ remove_digits  = str.maketrans('', '', digits)#to remove digits from the text
 
 #Our Long List Of Stop Words
 stop_words = [
-'#', '$', '%', '&', "''", "'ll", "'m", "'s", "'ve", '(', ')', '*', '+', ',', '-', '.', ':', ';', '=', '?', '@','!','~', '[', ']', '_','``','\'re','/s','\'','\"', '–','’',
-'a', 'about', 'above', 'after', 'again', 'against','ain', 'all', 'already','always', 'also', 'am', 'an', 'and', 'any', 'are', 'aren', "aren't", 'as', 'at',
-'b', 'be', 'because', 'been', 'before', 'being', 'below', 'between', 'both', 'but', 'by','best','become',
-'c', 'can', 'couldn',"couldn't", 
-'d', 'deleted', 'did', 'didn', "didn't", 'do', 'does', 'doesn', "doesn't", 'doing', 'don', "don't", 'dont', 'down','during','deleted', 
+'a', 'about', 'above', 'after', 'again', 'against','ain', 'all', 'already','always', 'also', 'am', 'an', 'and', 'any', 'are', 'aren', "aren't", 'as', 'at','almost','anyone','anyways',
+'b', 'be', 'because', 'been', 'before', 'being', 'below', 'between', 'both', 'but', 'by','best','become','became',
+'c', 'can', 'couldn',"couldn't",'come','cute', 'could','cannot',
+'d', 'deleted', 'did', 'didn', "didn't", 'do', 'does', 'doesn', "doesn't", 'doing', 'don', "don't", 'dont', 'down','during','deleted','done','damn', 
 'e', 'each', 'even','early','enough','else','etc','every',
-'f', 'few', 'for', 'from', 'further',
+'f', 'few', 'for', 'from', 'further','feel','feels',
 'g', 'good', 'great', 
-'h', 'had','hadn',"hadn't", 'has', 'hasn', "hasn't",'have', 'haven', "haven't", 'having', 'he', 'her', 'here', 'hers', 'herself','him', 'himself', 'his', 'how','haha','https','however','hey','http',
+'h', 'had','hadn',"hadn't", 'has', 'hasn', "hasn't",'have', 'haven', "haven't", 'having', 'he', 'her', 'here', 'hers', 'herself','him', 'himself', 'his', 'how','https','however','hey','http','happy',
 'i', 'if', 'im', 'in', 'into','is', 'isn', "isn't", 'it', "it's", 'its', 'itself',
 'j', 'just',
-'k', 'known',
-'l', 'like', 'll', 'long','lot', 'lt','ly','let','lol',
-'m', 'ma', 'me', 'mightn', "mightn't", 'more','most', 'much', 'mustn', "mustn't", 'my', 'myself', 'maybe',
-'n', "n't", 'near', 'needn', "needn't", 'new', 'no', 'nor', 'not', 'now', 'nye','na','name','never',
+'k', 'known','know','kind','knew',
+'l', 'like', 'll', 'long','lot', 'lt','ly','let','lol','least','look','less','last',
+'m', 'ma', 'me', 'mightn', "mightn't", 'more','most', 'much', 'mustn', "mustn't", 'my', 'myself', 'maybe','might','must',
+'n', "n't", 'near', 'needn', "needn't", 'new', 'no', 'nor', 'not', 'now', 'nye','na','name','never','nice','next',
 'o', 'of', 'off', 'on', 'once', 'one', 'only', 'or','other', 'our', 'ours', 'ourselves', 'out', 'over', 'own','oh',
-'p', 'please',
+'p', 'please','people', 'peoples','pointe',
 'q',
 'r', 're',
-'s', 'same','say','shan', "shan't",'she', "she's", 'should', "should've", 'shouldn', "shouldn't", 'so', 'some','such','shortly','sure','something','someone','sorry',
-'t', 'than', 'that', "that'll", 'thats', 'the', 'their', 'theirs', 'them', 'themselves','then', 'there', 'these','they', 'this','those','though','through','to','too','tell','talk', 
+'s', 'same','say','shan', "shan't",'she', "she's", 'should', "should've", 'shouldn', "shouldn't", 'so', 'some','such','shortly','sure','something','someone','sorry','shit','still',
+'t', 'than', 'that', "that'll", 'thats', 'the', 'their', 'theirs', 'them', 'themselves','then', 'there', 'these','they', 'this','those','though','through','to','too','tell','talk','think','today','thankya',
 'u', 'under','until','up','upon','us','use',
 'v', 've','very','vw',
-'w', 'was','wasn', "wasn't",'we','were','weren',"weren't",'what','when','where','which','while','who','whom','why','will','wish','with','won',"won't",'would', 'wouldn',"wouldn't",'wo', 
+'w', 'was','wasn', "wasn't",'we','were','weren',"weren't",'what','when','where','which','while','who','whom','why','will','wish','with','won',"won't",'would', 'wouldn',"wouldn't",'wentto', 
 'x',
 'y', 'ya','yes','you',"you'd","you'll","you're","you've",'your','yours','yourself','yourselves','yea','yeah','year',
 'z'
@@ -50,32 +49,28 @@ def ProcessBody(text):
     Returns:
         topics (set) 
     """
-    #Remove Emojis and other weird chars
-    emoji_pattern = re.compile("["
-            u"\U0001F600-\U0001F64F"  # emoticons
-            u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
-            u"\U0001F300-\U0001F5FF"  # symbols & pictographs
-            u"\U0001F680-\U0001F6FF"  # transport & map symbols
-                              "]+", flags=re.UNICODE)
 
-
-    text = emoji_pattern.sub(r'', text)
-    text = text.replace('.',' ').replace('-',' ').replace('_',' ').replace('/',' ').replace('\\',' ').replace(']',' ').replace('$',' ')
-    text = text.replace(',',' ').replace('\'',' ').replace('<',' ').replace('>',' ').replace('~',' ').replace('[',' ').replace('&',' ')
-    text = text.replace('+',' ').replace('=',' ').replace(':',' ').replace('^',' ').replace('!',' ').replace('?',' ').replace('\n',' ')
-    text = text.replace('|',' ').replace('(',' ').replace(')',' ').replace('{',' ').replace('}',' ').replace('"',' ').replace('*',' ')
-    text = text.replace('\t'," ")
-    
-    text_tokens = text.lower().split(" ")#turned text to lowercase then split it into words 
+    text = re.sub(r'[^A-Za-z]', ' ', text)
+    text_tokens = text.lower().strip().split(" ")#turned text to lowercase then split it into words 
     tokens_without_sw = [word.translate(remove_digits) for word in text_tokens ]#remove digits
     tokens_without_sw = [word for word in tokens_without_sw if not word in stop_words]#remove stop words
     tokens_without_sw = [word for word in tokens_without_sw if  not word.endswith('ly')] #remove words with 'ly' suffix
     tokens_without_sw = [word for word in tokens_without_sw if  not word.endswith('ing')]#remove words with 'ing' suffix
     tokens_without_sw = [word for word in tokens_without_sw if  not word.endswith('ful')]#remove words with 'ful' suffix
     tokens_without_sw = [word for word in tokens_without_sw if  not word.endswith('ed')]#remove words with 'ed' suffix
+    tokens_without_sw = [word for word in tokens_without_sw if  not word.endswith('ll')]#remove words with 'll' suffix
+    tokens_without_sw = [word for word in tokens_without_sw if  not word.endswith('hh')]#remove words with 'hh' suffix like hhhhhh
+    tokens_without_sw = [word for word in tokens_without_sw if  not word.endswith('ha')]#remove words with 'ha' suffix like hahaha
+    tokens_without_sw = [word for word in tokens_without_sw if  not word.endswith('est')]#remove words with 'est' suffix
+    tokens_without_sw = [word for word in tokens_without_sw if  not word.endswith('able')]#remove words with 'able' suffix
+    tokens_without_sw = [word for word in tokens_without_sw if  not word.endswith('man')]#remove words with 'man' suffix
+    tokens_without_sw = [word for word in tokens_without_sw if  not word.endswith('ter')]#remove words with 'ter' suffix
+    tokens_without_sw = [word for word in tokens_without_sw if  not word.endswith('ters')]#remove words with 'ters' suffix
+    tokens_without_sw = [word for word in tokens_without_sw if  not word.endswith('bag')]#remove words with 'bag' suffix like fuckbag douchbag and many more 
+
     Tokens = [word for word in tokens_without_sw if  not word.endswith('ous')]#remove words with 'ous' suffix
     Tokens = [word for word in tokens_without_sw if word!=" "]
-    Tokens=filter(lambda word: len(word) >3 and len(word) <= 15, Tokens)#filter on length of token to remove very long tokens
+    Tokens=filter(lambda word: len(word) >4 and len(word) <= 15, Tokens)#filter on length of token to remove very long tokens
     return set(Tokens)
 
 
@@ -91,7 +86,7 @@ for line in sys.stdin:
     try:
         Jobject=json.loads(line.encode('utf-8'))
         for word in ProcessBody(Jobject['body']):
-            if len(word)!=0:
+            if  word:
                 print("{}\t{}\t{}".format(word,Jobject['ups'],Jobject['downs']))
     except:
-        None
+        continue

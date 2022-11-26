@@ -4,7 +4,7 @@ import sys
 import json
 
 
-"""maps the json object to:parent_id, controversiality three numbers each number is either 1 or 0
+"""maps the json object to:
 first:  indicates whether the comment was edited or not
 second: indicates if the body is deleted or not
 third:  indicates if the user was deleted or not
@@ -18,7 +18,7 @@ Returns:
 for line in sys.stdin:
     try:
         Jobject=json.loads(line.encode('utf-8'))
-        print("{}\t{}\t{}\t{}\t{}".format(Jobject['parent_id'],Jobject['controversiality'],1*(Jobject["edited"]!=False),1*(Jobject['author']=='[deleted]'),1*(Jobject['body']=='[deleted]')))
+        print("{}\t{}\t{}".format(1*(Jobject["edited"]!=False), 1*(Jobject['author']=='[deleted]'), 1*(Jobject['body']=='[deleted]')))
     except:
         continue
 

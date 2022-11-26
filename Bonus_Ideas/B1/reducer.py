@@ -28,8 +28,12 @@ for line in sys.stdin:
         deleted_usersSum=int(deleted_user)
         currentControversiality=controversiality
 
-#sort dict
-words_count = dict(sorted(out.items(), key=lambda item: item[1], reverse=True))
+#sort dict on the sum of deleted users, deleted comments and edited comments
+temp = {val: sum(int(idx) for idx in key[1:]) for val, key in out.items()}
+
+temp1 = sorted(out.items(), key = lambda ele : temp[ele[0]], reverse=True)
+
+words_count = {key: val for key, val in temp1}
 
 #display the top 1000
 top=1000

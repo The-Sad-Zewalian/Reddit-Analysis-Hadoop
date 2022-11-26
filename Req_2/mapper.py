@@ -1,5 +1,5 @@
-
 #!/usr/bin/python3
+
 import json
 import sys
 
@@ -11,5 +11,8 @@ Returns:
 """
 
 for line in sys.stdin:
-    Jobject = json.loads(line)
-    print("{}\t{}\t{}".format(Jobject['parent_id'],Jobject['controversiality'],'1'))
+    try:
+        Jobject = json.loads(line.encode('utf-8'))
+        print("{}\t{}\t{}".format(Jobject['parent_id'],Jobject['controversiality'],'1'))
+    except:
+        None

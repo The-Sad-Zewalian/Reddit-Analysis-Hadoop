@@ -1,5 +1,5 @@
-   
 #!/usr/bin/python3
+
 import sys
 
 """aggregates the results, sort them and finally prints the results

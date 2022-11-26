@@ -26,5 +26,9 @@ for line in sys.stdin:
 words_count = dict(sorted(out.items(), key=lambda item: item[1], reverse=True))
 
 #print output
+top=1000
 for ID, data in words_count.items():
+    if(not top):
+        break
     print("{}\t{}\t{}".format(ID, data[0], data[1]))
+    top-=1

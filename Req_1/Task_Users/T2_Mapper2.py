@@ -50,8 +50,7 @@ def ProcessBody(text):
 
     text = re.sub(r'[^A-Za-z]', ' ', text)#Remove anything that is not letters this includes emojis, punct, digits, and special chars
     text_tokens = text.lower().strip().split(" ")#turned text to lowercase then split it into words 
-    tokens_without_sw = [word.translate(remove_digits) for word in text_tokens ]#remove digits
-    tokens_without_sw = [word for word in tokens_without_sw if not word in stop_words]#remove stop words
+    tokens_without_sw = [word for word in text_tokens if not word in stop_words]#remove stop words
     tokens_without_sw = [word for word in tokens_without_sw if  not word.endswith('ly')]  #remove words with 'ly' suffix
     tokens_without_sw = [word for word in tokens_without_sw if  not word.endswith('ing')] #remove words with 'ing' suffix
     tokens_without_sw = [word for word in tokens_without_sw if  not word.endswith('ful')] #remove words with 'ful' suffix
@@ -77,9 +76,7 @@ Returns:
     User, Topic, '1'
 """
 
-counter =0
 for line in sys.stdin:
-    counter +=1
     WordList = ProcessBody(line.split('\t')[1:-1][0])
     for word in WordList:
         if word:

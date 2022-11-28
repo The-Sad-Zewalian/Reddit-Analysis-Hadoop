@@ -3,8 +3,8 @@
 
 Where we make some analyses on 10% of the data using hadoop working paradigm.
 Please Modify the Hadoop/Java Vars in the bash files to fit your installations.
-To run any of the following task please download a sample txt file and name it "test.txt" from the [dataset](https://drive.google.com/file/d/1-D_uHkn37M5ptWVQl8a5-q8NBv9jaLWr/view?usp=sharing)
-, put it in hadoop and run the bashscript.
+To run any of the following tasks please download [dataset](https://drive.google.com/file/d/1-D_uHkn37M5ptWVQl8a5-q8NBv9jaLWr/view?usp=sharing) file, take  a sample, name it "test.txt" 
+, put it in hadoop and run the bashscripts.
 
 ## Requirement-1
 

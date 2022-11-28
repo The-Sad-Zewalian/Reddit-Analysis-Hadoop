@@ -23,7 +23,7 @@ for line in sys.stdin:
         NegSum += int(Neg)
     else:
         out[currentUser]=[countSum,PosSum,NegSum]
-        currentSub = user
+        currentUser = user
         countSum = int(count)
         PosSum = int(Pos)
         NegSum = int(Neg)

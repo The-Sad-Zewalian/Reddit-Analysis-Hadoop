@@ -22,7 +22,7 @@ for line in sys.stdin:
         PosSum += int(Pos)
         NegSum += int(Neg)
     else:
-        print("{}\t{}\t{}\t{}".format(user,countSum,PosSum,NegSum))
+        print("{}\t{}\t{}\t{}".format(currentUser,countSum,PosSum,NegSum))
         currentSub = user
         countSum = int(count)
         PosSum = int(Pos)
